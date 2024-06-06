@@ -18,8 +18,10 @@ return{
                     api_key:'7732db7e2c7988f74df2d534b524a87d',
                     query:'ritorno'
                 }
-            }).then(response=> this.store.Movie=response.data)
-            console.log(this.store.Movie.genres)
+            }).then(response=>this.store.Movie=response.data.results)
+
+            console.log(this.store.Movie)
+         
 
 
 
