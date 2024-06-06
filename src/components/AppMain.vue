@@ -6,7 +6,7 @@ export default{
 
 return{
     store,
-    
+    voteNumber:0,
 }
 
 
@@ -21,9 +21,11 @@ return{
                 }
             }).then((response) => {
 this.store.movie = response.data.results;
-console.log(this.store.movie)
+console.log(response.data.results)
+
 
 });
+
 axios
             .get(this.store.apiurlTv, {
                 params:{
@@ -32,7 +34,7 @@ axios
                 }
             }).then((response) => {
 this.store.tv = response.data.results;
-console.log(this.store.tvs)
+console.log(this.store.tv)
 
 });
 },
@@ -48,23 +50,27 @@ console.log(this.store.tvs)
     <button @click="getsearch()">search</button>
 <ul>
     <li v-for="index in this.store.movie">
-<h2>titolo:{{index.title}}</h2>
-<h2>titolo originale:{{index.original_title}}</h2>
-<div>
-    <span v-if="index.original_language==='en'"><img src="/src/img/748024_flag_kingdom_united_icon.png" alt="en"></span>
-    <span v-if="index.original_language==='it'"><img src="/src/img/748049_flag_italy_icon.png" alt="it"></span>
-</div>
+        <h2>titolo:{{index.title}}</h2>
+        <h2>titolo originale:{{index.original_title}}</h2>
+        <div>
+            <span v-if="index.original_language==='en'"><img src="/src/img/748024_flag_kingdom_united_icon.png" alt="en"></span>
+            <span v-if="index.original_language==='it'"><img src="/src/img/748049_flag_italy_icon.png" alt="it"></span>
+        </div>
+<input v-model="this.voteNumber">{{ index.vote_average }}</input>
+
+            
+    
 
     </li>
 </ul>
 <ul>
     <li v-for="index in this.store.tv">
-<h2>titolo:{{index.name}}</h2>
-<h2>titolo originale:{{index.original_name}}</h2>
-<div>
-    <span v-if="index.original_language==='en'"><img src="/src/img/748024_flag_kingdom_united_icon.png" alt="en"></span>
-    <span v-if="index.original_language==='it'"><img src="/src/img/748049_flag_italy_icon.png" alt="it"></span>
-</div>
+        <h2>titolo:{{index.name}}</h2>
+        <h2>titolo originale:{{index.original_name}}</h2>
+        <div>
+            <span v-if="index.original_language==='en'"><img src="/src/img/748024_flag_kingdom_united_icon.png" alt="en"></span>
+            <span v-if="index.original_language==='it'"><img src="/src/img/748049_flag_italy_icon.png" alt="it"></span>
+        </div>
 
     </li>
 </ul>
