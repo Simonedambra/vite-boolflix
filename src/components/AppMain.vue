@@ -6,6 +6,7 @@ export default{
 
 return{
     store,
+    
 }
 
 
@@ -16,19 +17,26 @@ return{
             .get(this.store.apiurl, {
                 params:{
                     api_key:'7732db7e2c7988f74df2d534b524a87d',
-                    query:'ritorno'
+                    query: this.store.searchkey
                 }
-            }).then(response=>this.store.Movie=response.data.results)
+            }).then((response) => {
+this.store.movie = response.data.results;
+console.log(this.store.movie)
 
-            console.log(this.store.Movie)
-         
+});
+axios
+            .get(this.store.apiurlTv, {
+                params:{
+                    api_key:'7732db7e2c7988f74df2d534b524a87d',
+                    query: this.store.searchkey
+                }
+            }).then((response) => {
+this.store.tv = response.data.results;
+console.log(this.store.tvs)
 
+});
+},
 
-
-
-
-
-        }
     
     
     }
@@ -36,9 +44,29 @@ return{
     }
 </script>
 <template>
-    <button @click="getsearch()">cv</button>
+    <input type="text" v-model="this.store.searchkey">
+    <button @click="getsearch()">search</button>
 <ul>
-    <li ></li>
+    <li v-for="index in this.store.movie">
+<h2>titolo:{{index.title}}</h2>
+<h2>titolo originale:{{index.original_title}}</h2>
+<div>
+    <span v-if="index.original_language==='en'"><img src="/src/img/748024_flag_kingdom_united_icon.png" alt="en"></span>
+    <span v-if="index.original_language==='it'"><img src="/src/img/748049_flag_italy_icon.png" alt="it"></span>
+</div>
+
+    </li>
+</ul>
+<ul>
+    <li v-for="index in this.store.tv">
+<h2>titolo:{{index.name}}</h2>
+<h2>titolo originale:{{index.original_name}}</h2>
+<div>
+    <span v-if="index.original_language==='en'"><img src="/src/img/748024_flag_kingdom_united_icon.png" alt="en"></span>
+    <span v-if="index.original_language==='it'"><img src="/src/img/748049_flag_italy_icon.png" alt="it"></span>
+</div>
+
+    </li>
 </ul>
 
 
