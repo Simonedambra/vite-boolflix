@@ -1,12 +1,13 @@
 <script>
 import axios, { Axios } from 'axios';
 import { store } from '../store';
+
+
 export default{
     data(){
 
 return{
     store,
-    voteNumber:0,
 }
 
 
@@ -21,9 +22,21 @@ return{
                 }
             }).then((response) => {
 this.store.movie = response.data.results;
-console.log(response.data.results)
+
+// this.store.movie.forEach((element) => {
 
 
+    // this.store.star=Math.ceil(element.vote_average / 2)
+    // console.log(this.store.star)
+
+
+    // let vote =(element.vote_average / 2)
+    // this.voteNumber.push(Math.ceil(vote));
+    // console.log(this.voteNumber)
+
+// });
+       
+    
 });
 
 axios
@@ -46,6 +59,7 @@ console.log(this.store.tv)
     }
 </script>
 <template>
+     
     <input type="text" v-model="this.store.searchkey">
     <button @click="getsearch()">search</button>
 <ul>
@@ -56,12 +70,12 @@ console.log(this.store.tv)
             <span v-if="index.original_language==='en'"><img src="/src/img/748024_flag_kingdom_united_icon.png" alt="en"></span>
             <span v-if="index.original_language==='it'"><img src="/src/img/748049_flag_italy_icon.png" alt="it"></span>
         </div>
-<input v-model="this.voteNumber">{{ index.vote_average }}</input>
-
-            
-    
-
+        <span v-for="i in 5">
+            <span v-if=" i <= Math.ceil(index.vote_average / 2)">*</span>
+            <span v-else>-</span>
+        </span>
     </li>
+    
 </ul>
 <ul>
     <li v-for="index in this.store.tv">
