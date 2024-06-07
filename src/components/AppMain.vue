@@ -71,8 +71,8 @@ console.log(this.store.tv)
             <span v-if="index.original_language==='it'"><img src="/src/img/748049_flag_italy_icon.png" alt="it"></span>
         </div>
         <span v-for="i in 5">
-            <span v-if=" i <= Math.ceil(index.vote_average / 2)">*</span>
-            <span v-else>-</span>
+            <span v-if=" i <= Math.ceil(index.vote_average / 2)"><font-awesome-icon icon="fa-solid fa-star" style="color: gold;" /></span>
+            <span v-else><font-awesome-icon icon="fa-regular fa-star" style="color: gold;"/></span>
         </span>
     </li>
     
@@ -85,9 +85,25 @@ console.log(this.store.tv)
             <span v-if="index.original_language==='en'"><img src="/src/img/748024_flag_kingdom_united_icon.png" alt="en"></span>
             <span v-if="index.original_language==='it'"><img src="/src/img/748049_flag_italy_icon.png" alt="it"></span>
         </div>
-
+        <span v-for="i in 5">
+            <span v-if=" i <= Math.ceil(index.vote_average / 2)"><font-awesome-icon icon="fa-solid fa-star" style="color: gold;" /></span>
+            <span v-else><font-awesome-icon icon="fa-regular fa-star" style="color: gold;"/></span>
+        </span>
     </li>
 </ul>
 
 
 </template>
+
+<style>
+ul{
+
+li{
+    background-color: aqua;
+    height: 300px;
+    width: 200px;
+    border: 2px solid black;
+}
+}
+
+</style>
